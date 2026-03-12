@@ -55,32 +55,52 @@ $persenTentang = $totalSemua > 0 ? round($totalTentang / $totalSemua * 100) : 0;
 <div class="flex-1 p-6 md:p-8 md:ml-[50px] transition-all duration-300">
 
 <!-- Welcome -->
-<div class="bg-white p-6 rounded-2xl shadow-md mb-8 text-lg font-semibold">
-Selamat Datang, Admin 👋
+<div class="bg-gradient-to-r from-blue-400 to-orange-400 p-6 rounded-2xl shadow-lg mb-8 text-white flex justify-between items-center">
+
+<div>
+<h1 class="text-2xl font-bold">
+Dashboard Tasty Food
+</h1>
+
+<p class="text-sm opacity-90">
+Panel admin untuk mengelola website Tasty Food
+</p>
+</div>
+
+<div class="text-right">
+<p class="text-sm opacity-90">
+Tanggal
+</p>
+
+<p class="font-semibold text-lg">
+{{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
+</p>
+</div>
+
 </div>
 
 <!-- Cards -->
 <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
 
-<div class="bg-white p-6 rounded-2xl shadow text-center">
+<div class="bg-white p-6 rounded-2xl shadow text-center border-l-4 border-blue-500">
 <h3 class="text-blue-900 font-semibold mb-2">🖼️ Galeri</h3>
 <div class="text-4xl font-bold text-blue-700 counter" data-target="{{ $totalGaleri }}">0</div>
 <p class="text-gray-500 text-sm">Total foto galeri</p>
 </div>
 
-<div class="bg-white p-6 rounded-2xl shadow text-center">
+<div class="bg-white p-6 rounded-2xl shadow text-center border-l-4 border-yellow-500">
 <h3 class="text-blue-900 font-semibold mb-2">📞 Kontak</h3>
 <div class="text-4xl font-bold text-yellow-500 counter" data-target="{{ $totalKontak }}">0</div>
 <p class="text-gray-500 text-sm">Pesan dari pengunjung</p>
 </div>
 
-<div class="bg-white p-6 rounded-2xl shadow text-center">
+<div class="bg-white p-6 rounded-2xl shadow text-center border-l-4 border-purple-500">
 <h3 class="text-blue-900 font-semibold mb-2">📰 Berita</h3>
 <div class="text-4xl font-bold text-purple-600 counter" data-target="{{ $totalBerita }}">0</div>
 <p class="text-gray-500 text-sm">Total berita</p>
 </div>
 
-<div class="bg-white p-6 rounded-2xl shadow text-center">
+<div class="bg-white p-6 rounded-2xl shadow text-center border-l-4 border-green-500">
 <h3 class="text-blue-900 font-semibold mb-2">📄 Tentang</h3>
 <div class="text-4xl font-bold text-green-600 counter" data-target="{{ $totalTentang }}">0</div>
 <p class="text-gray-500 text-sm">Konten tentang</p>

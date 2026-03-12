@@ -44,7 +44,7 @@
 ">
 
     <img
-        src="{{ asset('storage/images/wa.jpeg') }}"
+        src="{{ asset('storage/images/img-4.png') }}"
         class="
             /* ===== MOBILE ===== */
             w-[120vw]
@@ -222,7 +222,7 @@
     <div class="flex justify-center mt-8">
 
 <a href="/berita" 
-class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300">
+class="inline-block mt-6 bg-black text-white px-14 py-2 text-sm font-semibold rounded-lg hover:bg-gray-800 transition ">
 Lihat Lebih Lanjut
 <span>→</span>
 </a>

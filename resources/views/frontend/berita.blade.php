@@ -84,7 +84,7 @@ display:none;
 
 <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 ">
 
-@foreach($berita as $item)
+@foreach($beritas as $item)
 <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col"
 data-judul="{{ e($item->judul) }}"
 data-isi="{{ e($item->isi) }}"
@@ -111,6 +111,15 @@ data-gambar="{{ $item->gambar }}">
 </div>
 @endforeach
 
+</div>
+<!-- Pagination -->
+<div class="flex flex-col items-center mt-12 space-y-2">
+    {{ $beritas->links() }}
+
+    <small class="text-gray-500 text-sm">
+        Menampilkan {{ $beritas->firstItem() }} - {{ $beritas->lastItem() }} 
+        dari {{ $beritas->total() }} berita
+    </small>
 </div>
 </div>
 </section>
