@@ -268,26 +268,59 @@ data-gambar="{{ $item->gambar }}">
 </footer>
 
 <!-- ================= MODAL (TAILWIND) ================= -->
-<div id="beritaModal"
-     class="fixed inset-0 bg-black/60 hidden items-center justify-center p-6 z-50">
-
-    <div class="bg-white max-w-3xl w-full rounded-2xl p-6 relative">
-        <button id="closeModal"
-                class="absolute top-4 right-4 text-gray-500 text-xl">
-            ✕
-        </button>
-
-        <img id="modalImage"
-             class="w-full h-72 object-cover rounded-xl mb-4">
-
-        <h3 id="modalTitle"
-            class="text-2xl font-bold mb-3"></h3>
-
-        <div id="modalDescription"
-             class="text-gray-600"></div>
-    </div>
 </div>
+<div id="beritaModal"
+class="fixed inset-0 bg-black/70 hidden 
+       items-center justify-center 
+       z-50 p-4 sm:p-6">
 
+    <div class="bg-white w-full max-w-3xl 
+                rounded-xl shadow-lg overflow-hidden 
+                flex flex-col 
+                max-h-[95vh] sm:max-h-[90vh]">
+
+        {{-- HEADER --}}
+        <div class="px-4 sm:px-6 py-3 sm:py-4 
+                    border-b font-bold 
+                    text-base sm:text-lg">
+            DETAIL BERITA
+        </div>
+
+        {{-- BODY --}}
+        <div class="p-4 sm:p-6 
+                    overflow-y-auto flex-1">
+
+            <img id="modalImage"
+                 class="w-full 
+                        h-48 sm:h-64 lg:h-[320px] 
+                        object-cover 
+                        rounded-lg mb-4 sm:mb-6">
+
+            <h3 id="modalTitle"
+                class="font-bold 
+                       text-lg sm:text-xl 
+                       mb-3 sm:mb-4 uppercase"></h3>
+
+            <p id="modalDescription"
+               class="text-gray-600 
+                      text-sm sm:text-base
+                      leading-relaxed 
+                      whitespace-pre-line"></p>
+
+        </div>
+        {{-- FOOTER --}}
+        <div class="px-4 sm:px-6 py-3 sm:py-4 
+                    border-t flex justify-end">
+
+            <button onclick="closeBeritaModal()"
+                    class="bg-gray-600 text-white 
+                           px-4 sm:px-6 py-2 
+                           text-sm sm:text-base
+                           rounded-lg hover:bg-gray-700 transition">
+                Tutup
+            </button>
+
+        </div>
 <!-- ================= SCRIPT ================= -->
 <script>
 const menuBtn = document.getElementById('menuBtn');
@@ -319,6 +352,10 @@ closeModal.addEventListener('click',()=>{
     modal.classList.add('hidden');
 });
 </script>
-
+<script>
+function closeBeritaModal() {
+    document.getElementById("beritaModal").classList.add("hidden");
+}
+</script>
 </body>
 </html>

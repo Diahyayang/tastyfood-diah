@@ -5,16 +5,41 @@
 
 
 {{-- ================= HERO ================= --}}
-<section class="relative bg-gray-100 min-h-[135vh] pt-[120px] pb-[70px] overflow-hidden  ">
-    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center ">
+<section class="relative bg-gray-100 min-h-fit lg:min-h-[130vh] pt-[120px] pb-[70px] overflow-hidden  ">    
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 ">
+
+        {{-- IMAGE --}}
+        <div class="
+    relative lg:absolute
+    lg:top-[-150px]    /* desktop */
+    top-[-250px] sm:top-[-60px]   /* NAIK ke atas di mobile */
+    right-0                /* GESER ke kanan */
+
+    w-[500px] sm:w-[350px] md:w-[500px] lg:w-[700px]
+
+    ml-auto                      /* dorong ke kanan */
+    lg:right-[-150px]
+
+    flex justify-end
+    z-0
+">
+    
+    <img
+        src="{{ asset('storage/images/img-4.png') }}"
+        class="w-full object-contain">
+</div>
         {{-- TEXT --}}
-        <div class="relative z-10 pt-[82px] lg:pt-0">
+         <div class="relative z-10 
+    top-[-280px] 
+    sm:top-[-100px] 
+    md:top-0 
+    max-w-xl">
             <div class="w-20 h-[2px] bg-black mb-6"></div>
-                        <h1 class="text-4xl lg:text-5xl font-extrabold leading-tight">
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
                             <span class="font-light">HEALTHY</span><br>
                             TASTY FOOD
                         </h1>
-                        <p class="mt-4 text-gray-800 max-w-xl">
+                        <p class="mt-8 text-gray-800 text-lg leading-relaxed">
                             Tasty Food menghadirkan makanan sehat dengan bahan segar dan kualitas terbaik. Setiap menu dibuat dengan penuh perhatian untuk menjaga cita rasa dan nutrisi, sehingga Anda bisa menikmati makanan yang lezat sekaligus menyehatkan.
                         </p>
                         <a href="{{ route('tentang') }}"
@@ -25,38 +50,13 @@
             </a>
         </div>
 
-       {{-- IMAGE --}}
-        <div class="
-    /* ===== MOBILE ===== */
-    absolute
-    -top-20
-    left-1/2
-    -translate-x-1/2
-    w-full
-    flex justify-right
-    z-0
 
-    /* ===== DESKTOP ===== */
-    lg:top-[-150px]
-    lg:right-[-780px]
-    lg:left-auto
-    lg:translate-x-0
-">
+        
 
-    <img
-        src="{{ asset('storage/images/img-4.png') }}"
-        class="
-            /* ===== MOBILE ===== */
-            w-[120vw]
-            max-w-none
-            object-cover
 
-            /* ===== DESKTOP ===== */
-            lg:w-[730px]
-        ">
-</div>
-    </div>
+
 </section>
+
 
 {{-- ================= TENTANG ================= --}}
 <section class="relative mt-[-200px] py-24 bg-white text-center">
@@ -64,7 +64,7 @@
         <h2 class="text-2xl lg:text-3xl font-bold mb-6">
             TENTANG KAMI
         </h2>
-        <p class="text-gray-800 leading-relaxed text-base mb-8">
+        <p class="text-gray-800 text-lg leading-relaxed text-base mb-8">
             “Tasty Food adalah usaha kuliner yang berfokus pada penyajian makanan sehat, lezat, dan berkualitas. Kami menggunakan bahan-bahan segar pilihan serta proses yang higienis untuk memastikan setiap hidangan memberikan rasa terbaik dan manfaat bagi kesehatan.”
         </p>
         <div class="w-28 h-[3px] bg-black mx-auto"></div>
@@ -83,7 +83,7 @@
 
 
 
-    <div class="relative max-w-6xl mx-auto px-6">
+    <div class="relative max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16">
 
 
@@ -111,7 +111,7 @@
 
 
                 <div class="pt-20">
-                    <h3 class="font-bold text-lg mb-3">{{ $item[1] }}</h3>
+                    <h3 class="font-bold text-lg leading-relaxed mb-3">{{ $item[1] }}</h3>
                     <p class="text-sm text-gray-800">
     {{ $item[2] }}
 </p>
@@ -137,7 +137,7 @@
 
 {{-- ================= BERITA ================= --}}
 <section class="py-24 bg-gray-50">
-<div class="max-w-6xl mx-auto px-4">
+<div class="max-w-7xl mx-auto px-4">
 
     <h2 class="text-2xl font-bold text-center mb-12">
         BERITA KAMI
@@ -233,7 +233,7 @@ Lihat Lebih Lanjut
 
 {{-- ================= GALLERY ================= --}}
 <section class="pt-8 pb-20 py-24 bg-white">
-<div class="max-w-6xl mx-auto px-4">
+<div class="max-w-7xl mx-auto px-4">
 
 
 <h2 class="text-2xl font-bold text-center mb-12">
