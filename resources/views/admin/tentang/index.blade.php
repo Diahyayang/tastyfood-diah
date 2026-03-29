@@ -11,96 +11,95 @@
 <body class="bg-gray-100 min-h-screen">
 
 @include('admin.layouts.navbar')
+
 <!-- MAIN -->
-<div class="flex-1 p-6 md:p-8 md:ml-[20px] transition-all duration-300">
+<div class="flex-1 p-6 md:p-8 transition-all duration-300">
 
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-5xl mx-auto">
 
-        <h1 class="text-2xl font-bold mb-6">Data Tentang</h1>
+        <!-- HEADER -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+            <h1 class="text-2xl font-bold text-gray-800">
+                📑 Data Tentang
+            </h1>
 
-        <a href="{{ route('admin.tentang.create') }}"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition shadow">
-            + Tambah Data
-        </a>
+            <a href="{{ route('admin.tentang.create') }}"
+               class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition shadow">
+                ➕ Tambah Data
+            </a>
+        </div>
 
+        <!-- ALERT -->
         @if(session('success'))
-            <div class="bg-green-100 text-green-700 px-4 py-3 rounded-lg mb-6">
+            <div class="bg-green-100 text-green-800 px-4 py-3 rounded-lg mb-6 shadow-sm">
                 {{ session('success') }}
             </div>
         @endif
 
-        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+        <!-- LIST CARD -->
+        <div class="space-y-5">
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left">
+            @forelse ($tentangs as $index => $tentang)
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition p-5 border-l-4 border-blue-900">
 
-                    <thead class="bg-blue-900 text-white">
-                        <tr>
-                            <th class="px-6 py-4">No</th>
-                            <th class="px-6 py-4">Section</th>
-                            <th class="px-6 py-4">Deskripsi</th>
-                            <th class="px-6 py-4">Gambar</th>
-                            <th class="px-6 py-4">Aksi</th>
-                        </tr>
-                    </thead>
+                <div class="flex flex-col sm:flex-row gap-4">
 
-                    <tbody class="divide-y divide-gray-200">
+                    <!-- Gambar -->
+                    <div class="w-full sm:w-32 flex-shrink-0">
+                        @if ($tentang->gambar)
+                            <img src="{{ asset('storage/' . $tentang->gambar) }}"
+                                 class="w-full h-28 object-cover rounded-xl">
+                        @else
+                            <div class="w-full h-28 bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 text-sm">
+                                Tidak ada gambar
+                            </div>
+                        @endif
+                    </div>
 
-                        @forelse ($tentangs as $index => $tentang)
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="px-6 py-4">
-                                {{ $index + 1 }}
-                            </td>
+                    <!-- Konten -->
+                    <div class="flex-1 flex flex-col justify-between">
 
-                            <td class="px-6 py-4 font-medium text-gray-700">
-                                {{ $tentang->section }}
-                            </td>
+                        <!-- Section + Nomor -->
+                        <h2 class="text-lg font-semibold text-blue-900 mb-1">
+                            {{ $index + 1 }}. {{ $tentang->section }}
+                        </h2>
 
-                            <td class="px-6 py-4 text-gray-600 max-w-xs truncate">
-                                {{ \Illuminate\Support\Str::limit($tentang->deskripsi, 80) }}
-                            </td>
+                        <!-- Deskripsi -->
+                        <p class="text-gray-600 text-sm mb-3">
+                            {{ \Illuminate\Support\Str::limit($tentang->deskripsi, 120) }}
+                        </p>
 
-                            <td class="px-6 py-4">
-                                <img src="{{ asset('storage/' . $tentang->gambar) }}"
-                                     class="w-16 h-16 object-cover rounded-lg">
-                            </td>
+                        <!-- Aksi -->
+                        <div class="flex gap-3 mt-auto">
+                            <a href="{{ route('admin.tentang.edit', $tentang->id) }}"
+                               class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                ✏️ Edit
+                            </a>
 
-                            <td class="px-6 py-4">
-                                <div class="flex items-center gap-2">
+                            <form action="{{ route('admin.tentang.destroy', $tentang->id) }}"
+                                  method="POST"
+                                  onsubmit="return confirm('Hapus data ini?')">
+                                @csrf
+                                @method('DELETE')
 
-                                    <a href="{{ route('admin.tentang.edit', $tentang->id) }}"
-                                       class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-xs transition">
-                                       ✏️ Edit
-                                    </a>
+                                <button type="submit"
+                                        class="text-red-500 hover:text-red-700 text-sm font-medium">
+                                    🗑️ Hapus
+                                </button>
+                            </form>
+                        </div>
 
-                                    <form action="{{ route('admin.tentang.destroy', $tentang->id) }}"
-                                          method="POST">
-                                        @csrf
-                                        @method('DELETE')
+                    </div>
 
-                                        <button 
-                                            onclick="return confirm('Hapus data ini?')" 
-                                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-xs transition">
-                                            🗑️ Hapus
-                                        </button>
-                                    </form>
+                </div>
 
-                                </div>
-                            </td>
-                        </tr>
-
-                        @empty
-                        <tr>
-                            <td colspan="5" class="text-center px-6 py-6 text-gray-500">
-                                Data belum tersedia
-                            </td>
-                        </tr>
-                        @endforelse
-
-                    </tbody>
-
-                </table>
             </div>
+
+            @empty
+            <div class="text-center text-gray-500 py-10 bg-white rounded-2xl shadow-sm">
+                Data belum tersedia
+            </div>
+            @endforelse
 
         </div>
 
@@ -110,13 +109,11 @@
 
 <script>
 function toggleMenu(){
+    const menu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
 
-const menu = document.getElementById("mobileMenu");
-const overlay = document.getElementById("overlay");
-
-menu.classList.toggle("-translate-x-full");
-overlay.classList.toggle("hidden");
-
+    menu.classList.toggle("-translate-x-full");
+    overlay.classList.toggle("hidden");
 }
 </script>
 

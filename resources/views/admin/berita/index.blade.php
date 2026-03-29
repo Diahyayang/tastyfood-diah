@@ -13,13 +13,15 @@
 @include('admin.layouts.navbar')
 
 <!-- MAIN -->
-<div class="flex-1 p-6 md:pt-8 md:p-8 md:ml-[20px] transition-all duration-300">
+<div class="flex-1 p-6 md:p-8 transition-all duration-300">
 
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-5xl mx-auto">
 
         <!-- HEADER -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
-            <h1 class="text-2xl font-bold">Data Berita</h1>
+            <h1 class="text-2xl font-bold text-gray-800">
+                📰 Data Berita
+            </h1>
 
             <a href="{{ route('berita.create') }}"
                class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition shadow">
@@ -27,97 +29,86 @@
             </a>
         </div>
 
-        <!-- TABLE -->
-        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-            <div class="overflow-x-auto">
+        <!-- LIST CARD -->
+        <div class="space-y-5">
 
-                <table class="w-full text-sm text-left">
+            @forelse ($beritas as $berita)
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition p-5 border-l-4 border-blue-900">
 
-                    <thead class="bg-blue-900 text-white">
-                        <tr>
-                            <th class="px-6 py-4">Gambar</th>
-                            <th class="px-6 py-4">Judul</th>
-                            <th class="px-6 py-4">Isi</th>
-                            <th class="px-6 py-4 text-center">Aksi</th>
-                        </tr>
-                    </thead>
+                <div class="flex flex-col sm:flex-row gap-4">
 
-                    <tbody class="divide-y divide-gray-200">
-
-                        @forelse ($beritas as $berita)
-                        <tr class="hover:bg-gray-50 transition">
-
-                            <td class="px-6 py-4">
- 
-                                @if ($berita->gambar)
-                                    <img src="{{ asset('storage/'.$berita->gambar) }}"
-                                         class="w-20 h-14 object-cover rounded-lg">
-                                @else
-                                    <span class="text-gray-400">-</span>
-                                @endif
-                                
-                            </td>
-
-                            <td class="px-6 py-4 font-semibold text-gray-800">
-                                {{ $berita->judul }}
-                            </td>
-
-                            <td class="px-6 py-4 text-gray-500 max-w-xs truncate">
-                                {{ \Illuminate\Support\Str::limit($berita->isi, 100) }}
-                            </td>
-
-                            <td class="px-6 py-4 ">
-                            <div class="flex justify-center gap-2">
-                                <a href="{{ route('berita.edit', $berita->id) }}"
-                                   class="inline-block bg-green-400 hover:bg-green-500 text-white px-3 py-1 rounded-lg text-xs transition">
-                                    ✏️ Edit
-                                </a>
-
-                                <form action="{{ route('berita.destroy', $berita->id) }}"
-                                      method="POST"
-                                      class="inline"
-                                      onsubmit="return confirm('Hapus?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs transition">
-                                        🗑️ Hapus
-                                    </button>
-                                </form>
+                    <!-- Gambar -->
+                    <div class="w-full sm:w-40 flex-shrink-0">
+                        @if ($berita->gambar)
+                            <img src="{{ asset('storage/'.$berita->gambar) }}"
+                                 class="w-full h-32 object-cover rounded-xl">
+                        @else
+                            <div class="w-full h-32 bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 text-sm">
+                                Tidak ada gambar
                             </div>
-                            </td>
+                        @endif
+                    </div>
 
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4" class="text-center px-6 py-6 text-gray-500">
-                                Belum ada data berita
-                            </td>
-                        </tr>
-                        @endforelse
+                    <!-- Konten -->
+                    <div class="flex-1 flex flex-col justify-between">
 
-                    </tbody>
+                        <!-- Judul -->
+                        <h2 class="text-lg font-semibold text-blue-900 mb-1">
+                            {{ $berita->judul }}
+                        </h2>
 
-                </table>
+                        <!-- Isi -->
+                        <p class="text-gray-600 text-sm mb-3">
+                            {{ \Illuminate\Support\Str::limit($berita->isi, 120) }}
+                        </p>
+
+                        <!-- Aksi -->
+                        <div class="flex gap-3 mt-auto">
+                            <a href="{{ route('berita.edit', $berita->id) }}"
+                               class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                ✏️ Edit
+                            </a>
+
+                            <form action="{{ route('berita.destroy', $berita->id) }}"
+                                  method="POST"
+                                  onsubmit="return confirm('Hapus berita ini?')">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                        class="text-red-500 hover:text-red-700 text-sm font-medium">
+                                    🗑️ Hapus
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
+
+            @empty
+            <div class="text-center text-gray-500 py-10 bg-white rounded-2xl shadow-sm">
+                Belum ada data berita
+            </div>
+            @endforelse
+
         </div>
 
     </div>
 
 </div>
 
-
 <script>
 function toggleMenu(){
+    const menu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
 
-const menu = document.getElementById("mobileMenu");
-const overlay = document.getElementById("overlay");
-
-menu.classList.toggle("-translate-x-full");
-overlay.classList.toggle("hidden");
-
+    menu.classList.toggle("-translate-x-full");
+    overlay.classList.toggle("hidden");
 }
 </script>
+
 </body>
 </html>

@@ -35,6 +35,21 @@ ADMIN
 <a href="/admin/tentang" class="hover:bg-white/20 px-4 py-2 rounded-lg transition">
 📄 Tentang
 </a>
+<!-- BOTTOM -->
+
+
+
+
+
+
+
+<a href="/" class="view-site">
+    🌐 Lihat Website
+</a>
+
+
+
+
 
 <form action="{{ route('logout') }}" method="POST">
 @csrf

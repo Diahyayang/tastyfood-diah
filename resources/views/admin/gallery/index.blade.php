@@ -19,7 +19,7 @@
 
         <!-- HEADER -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
-            <h1 class="text-2xl font-bold">Gallery</h1>
+            <h1 class="text-2xl font-bold">🖼️ Data Gallery</h1>
 
             <a href="{{ route('admin.gallery.create') }}"
                class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition shadow">
