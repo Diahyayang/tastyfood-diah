@@ -20,14 +20,14 @@ body {
 <div class="absolute inset-0 backdrop-blur-[6px]"></div>
 
 <!-- Card -->
-<div class="relative z-10 w-[360px] pt-16 pb-8 px-8 rounded-2xl 
+<div class="relative z-10 w-[370px] pt-16 pb-8 px-8 rounded-2xl 
     bg-gradient-to-b from-white/10 to-white/5
     backdrop-blur-xl border border-white/20 
     shadow-2xl text-white text-center">
 
     <!-- Icon -->
     <div class="absolute -top-12 left-1/2 -translate-x-1/2">
-        <div class="w-24 h-24 bg-blue-800 rounded-full flex items-center justify-center border-4 border-white/20 shadow-lg text-2xl">
+        <div class="w-24 h-24 bg-blue-400 rounded-full flex items-center justify-center border-4 border-black/20 shadow-lg text-2xl">
             👤
         </div>
     </div>
@@ -43,7 +43,7 @@ body {
                 <input type="email" name="email" value="{{ old('email') }}"
                     required autofocus
                     placeholder="Email ID"
-                    class="w-full bg-transparent outline-none text-white placeholder-white/70 text-center">
+                    class="w-full bg-transparent outline-none rounded-md text-white placeholder-white/70 text-center">
             </div>
 
             @error('email')
@@ -58,7 +58,7 @@ body {
                 <input type="password" name="password"
                     required
                     placeholder="Password"
-                    class="w-full bg-transparent outline-none text-white placeholder-white/70 text-center">
+                    class="w-full bg-transparent outline-none rounded-md text-white placeholder-white/70 text-center">
             </div>
 
             @error('password')
